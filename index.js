@@ -35,7 +35,6 @@ logoAnimation.start();
 docButAnimation.start();
 
 var secQueue = document.querySelector('section.queue');
-var root = document.querySelector('html');
 
 cns([
     // 'debug', [true],
@@ -49,7 +48,7 @@ cns([
 
 
 function arrowClick(){
-    var a = root.scrollTop, b = secQueue.offsetTop, c=true;
+    var a = window.pageYOffset, b = secQueue.offsetTop, c=true;
     var an = crimson({
         duration: 1000,
         easing: EASING.easeOutQuint,
@@ -186,13 +185,13 @@ if(!isIE()){
 }
 
 function openPc(){
-    if(root.scrollTop >= source.offsetTop - source.offsetHeight/8 && !opened){
+    if(window.pageYOffset >= source.offsetTop - source.offsetHeight/8 && !opened){
         opened = true;
         ecran.style.width = '88%';
-        ecran.style.margin = '0 6%';
+        ecran.style.left = '6%';
         ecran.style.transform = 'translateZ(-40vmin) translateY(-15vmin) rotateX(0deg)';
         chassis.style.width = '80%';
-        chassis.style. margin = '0 10%';
+        chassis.style.left = '10%';
         chassis.style.transform = 'translateZ(-30vmin) translateY(30vmin) rotateX(45deg)';
         document.removeEventListener('scroll', openPc, {passive:true});
     }
