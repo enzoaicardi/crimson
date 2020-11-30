@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path fill="rgba(235,211,124,1)" stroke="transparent" stroke-width="0.2" d="M 21 15 C 25 13 22 16 31 21 L 30 24 L 24 29 L 18 30"></path>
+    <path fill="rgba(187,161,67,1)" stroke="transparent" stroke-width="0.2" d="M 6 25 C 40 1 10 25 26 25 C 28 25 29 24 30 23 L 27 28 L 19 31"></path>
+    <path fill="rgba(235,211,124,1)" stroke="transparent" stroke-width="0.2" d="M 4 14 C 5 14 6 21 13 22 C 8 27 23 24 11 29 L 5 26 L 3 18"></path>
+    <path fill="rgba(187,161,67,1)" stroke="transparent" stroke-width="0.2" d="M 31 21 C 30 36 0 34 0 21 C 0 19 1 16 4 14 C 2 31 27 32 31 21"></path>
+    <path fill="rgba(187,161,67,1)" stroke="transparent" stroke-width="0.2" d="M 12 7 C 15 3 8 2 10 1 C 14 0 18 0 22 1 C 24 2 17 3 20 7 C 16 6 16 11 12 7"></path>
+    <path fill="rgba(235,211,124,1)" stroke="transparent" stroke-width="0.2" d="M 19 5 L 13 5 C 11 5 11 3 12 3 L 20 3 C 21 3 21 5 19 5"></path>
+</svg>

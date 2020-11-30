@@ -1,0 +1,126 @@
+main a{
+    color: #EBD37C;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4{
+    margin: 20px 0 0 0;
+    padding: 10px 15px;
+    color: #EBD37C;
+}
+
+h1{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #f7f7f7;
+    background-color: #333333;
+}
+
+h2{
+    font-size: 1rem;
+    font-weight: 700;
+    border: 2px solid #aaaaaa;
+}
+
+h3{
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-bottom: 2px solid #aaaaaa;
+}
+
+h4{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+main p{
+
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #f7f7f7;
+    text-align: justify;
+    background-color: #555555;
+
+}
+
+main ul{
+    padding: 10px 20px 10px 40px;
+    background-color: #333333;
+    color: #aaaaaa;
+}
+
+main pre{
+
+    padding: 10px;
+    background-color: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+main code.hljs, main code{
+    font-size: 1rem;
+    line-height: 1rem;
+    font-family: monospace;
+    background-color: #333333;
+}
+
+main pre code{
+    padding: 0;
+}
+
+main code{
+    color: #aaaaaa;
+    background-color: #444444;
+    padding: 3px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+main strong{
+    color: #aaaaaa;
+}
+
+table{
+    max-width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    border: none;
+
+    overflow: scroll;
+}
+
+table th, table td{
+    border: 1px solid #444444;
+    padding: 5px 8px;
+}
+
+table th{
+    border-right: 1px solid #555555;
+    border-left: 1px solid #555555;
+    border-top: 1px solid #555555;
+    background-color: #444444;
+}
+
+.choice th{
+    width: 40%;
+}
+
+.choice th:nth-child(1){
+    width: 20%;
+}
+
+.choice td:nth-child(1){
+    background-color: #282828;
+}
+
+.choice .yes{
+    background-color: rgba(55, 83, 46, 0.5);
+}
+
+.choice .no{
+    background-color: rgba(83, 46, 46, 0.5);
+}
+
+.c-center{
+    text-align: center;
+}
