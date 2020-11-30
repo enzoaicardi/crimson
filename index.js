@@ -30,10 +30,9 @@ var logoAnimation = crimson({
         logoBig.style.transform = 'translateY(-'+(10*(1-p))+'vmin)';
     }
 });
-setTimeout(function(){
-    logoAnimation.start();
-    docButAnimation.start();
-}, 200);
+
+logoAnimation.start();
+docButAnimation.start();
 
 var secQueue = document.querySelector('section.queue');
 var root = document.querySelector('html');
