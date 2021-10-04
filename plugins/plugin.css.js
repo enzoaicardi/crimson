@@ -2,7 +2,7 @@ cnsPlugins.css = {
 
     extend: 'for',
     authors: ['Enzo Aicardi'],
-    links: {portfolio: 'https://enzoaicardi.com'},
+    links: {portfolio: 'https://enzo.aicardi.pro'},
     version: '1.0.0',
 
     // réception des arguments

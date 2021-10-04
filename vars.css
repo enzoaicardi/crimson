@@ -281,7 +281,7 @@
     margin: 0 8px 0 0;
 }
 
-@media screen and (max-width:400px){
+@media screen and (max-width:480px){
     .f-info{
         width: 98%;
         border: none;

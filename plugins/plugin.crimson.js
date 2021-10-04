@@ -2,10 +2,10 @@ cnsPlugins.crimson = {
 
     extend: 'for',
     authors: ['Enzo Aicardi'],
-    links: {portfolio: 'https://enzoaicardi.com'},
+    links: {portfolio: 'https://enzo.aicardi.pro'},
     version: '1.0.0',
     dependencies: {
-        crimson: ['1.0.0', 'link to crimson dep']
+        crimson: ['1.0.0', 'crimson is required']
     },
 
     // réception des arguments
@@ -16,7 +16,7 @@ cnsPlugins.crimson = {
             var obj = typeof arg[0] === 'object'?arg[0]:f.log({p: 'crimson', m: m.no, d: arg});
 
             var animation = typeof obj.animation === 'function'?function(p, l){obj.animation(p, l, tg);}:function(){};
-            var onfinish = typeof obj.onfinish === 'function'?function(p){obj.onfinish(p, tg);f.next(f);}:function(){};
+            var onfinish = typeof obj.onfinish === 'function'?function(l){obj.onfinish(l, tg);f.next(f);}:function(){};
 
             var an = crimson({
 

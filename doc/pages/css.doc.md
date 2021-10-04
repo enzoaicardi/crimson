@@ -80,7 +80,7 @@ est utilisée.
 'next', [int]
 ```
 
-La méthode **next** définit le délais avant l'execution du **set** en millisecondes. Par défaut il correspond au temps d'execution de la plus longue transition du **set**.
+La méthode **next** définit le délais avant l'execution du **set** suivant en millisecondes. Par défaut il correspond au temps d'execution de la plus longue transition du **set**.
 
 ### smooth
 

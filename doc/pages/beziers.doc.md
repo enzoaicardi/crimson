@@ -10,4 +10,4 @@ element.style.transition = '1000ms' + BEZIER.bounce;
 
 ## Les courbes
 
-Vous pouvez tester les différentes courbes hérités de PurpleSand sur [cette page](https://purplesand.enzoaicardi.com/doc/beziers.html), ainsi que les différentes courbes hérités de Easings.net sur [cette page](https://easings.net/).
+Vous pouvez tester les différentes courbes hérités de PurpleSand sur [cette page](https://purple.aicardi.pro/doc/beziers.html), ainsi que les différentes courbes hérités de Easings.net sur [cette page](https://easings.net/).

@@ -1,6 +1,6 @@
 # CrimsonSand
 
-CrimsonSand reprend des concepts de [PurpleSand](https://purplesand.enzoaicardi.com) mais les retravaille
+CrimsonSand reprend des concepts de [PurpleSand](https://purple.aicardi.pro) mais les retravaille
 complétement et n'adopte pas la même syntaxe, pour cette raison les deux projets ne portent pas le même nom
 même si on peut les situer (en partie) dans un prolongement logique.
 
@@ -283,7 +283,7 @@ Pour le dernier cas il faut impérativement que l'écouteur ne soit déclenché 
 Il est possible d'utiliser l'option once :
 
 ```javascript
-document.addEventListener('click', function (){ next(); }, {once: true});
+document.addEventListener('click', function (){ f.next(); }, {once: true});
 // non compatible avec IE ({6, 11});
 ```
 
@@ -292,7 +292,7 @@ Ou la fonction suivante :
 ```javascript
 function evt(e){
     // do something here
-    next();
+    f.next();
     document.removeEventListener(e.type, evt);
 }
 document.addEventListener('click', evt);

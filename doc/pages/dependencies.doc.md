@@ -1,6 +1,6 @@
 # Dependencies
 
-Le plugin **dependencies** ermet de chercher et d'obtenir les dépendences d'un plugin CrimsonSand.
+Le plugin **dependencies** permet de chercher et d'obtenir les dépendences d'un plugin CrimsonSand.
 
 <a href="../plugins/plugin.dependencies.js" download>Télécharger ici</a>
 
@@ -22,7 +22,7 @@ Retourne les dépendances du plugin dans la console du navigateur avec un indica
 ### getDependencies
 
 ```javascript
-cnsPlugins.findDependencies('plugin-name');
+cnsPlugins.getDependencies('plugin-name');
 ```
 
 Installe les dépendance à la fin du corps du document.
@@ -62,4 +62,4 @@ window.onload = function(){
 }
 ```
 
-C'est un ensemble assez couteux à mettre en place et qui doit être restecpté pour eviter les boggues. Pour cette raison il est préférable d'installer manuellement les plugins pour la production.
+C'est un ensemble assez couteux à mettre en place et qui doit être respecté pour eviter les boggues. Pour cette raison il est préférable d'installer manuellement les plugins pour la production.
