@@ -1,6 +1,6 @@
 # Crimsonsand
 
-Consultez la [documentation](https://crimsonsand.enzoaicardi.com/doc/).
+Consultez la [documentation](https://crimson.aicardi.pro/doc/).
 
 - Compatible ES5 (+95% des navigateurs)
 - Léger (seulement 330 lignes de code non compacté)
