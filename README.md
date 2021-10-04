@@ -19,4 +19,4 @@ Crimson est une fonction qui permet la mise en place d'animations web efficaces,
 
 # Téléchargements
 
-Vous pouvez télécharger la librairie depuis le dépot `/lib/` ou depuis la [documentation](https://crimsonsand.enzoaicardi.com/doc/).
+Vous pouvez télécharger la librairie depuis le dépot `/lib/` ou depuis la [documentation](https://crimson.aicardi.pro/doc/).
