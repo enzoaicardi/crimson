@@ -43,7 +43,7 @@ cns([
         {'transform': [400, 'translateY(10px)', 'ease']},
         {'transform': [2000, 'translateY(0px)', 'linear']}
     ],
-    'repeat', ['infinite', 0]
+    'repeat', ['infinite', 1]
 ]);
 
 

@@ -149,7 +149,8 @@ il est impératif de déclarer la **length** du précédent interval.
 Un interval dont la **length** vaut 0 est ignoré. La **length** indique le nombre d'éléments
 affectés par l'interval avant le prochain interval spécifié (il s'agit d'une boucle d'intervals).
 
-Utiliser un tableau d'intervals peut être relativement compliqué au début car il faut bien comprendre son fonctionnement sur les éléments, mais il s'agit d'une fonctionnalité très intéressante si elle est couplé avec un [ordre](#order) spécifique pour que les éléments soient affectés par exemples deux à deux.
+Utiliser un tableau d'intervals est chose complexe car cela necessite de bien comprendre son fonctionnement sur les éléments, mais pour autant il s'agit d'une fonctionnalité très intéressante si elle est couplé avec un [ordre](#order) spécifique, ce qui permet
+par exemple d'affecter les éléments deux à deux.
 
 ```javascript
 'interval', [interval, 1, 0, 1]
@@ -190,9 +191,10 @@ La méthode **pause** marque une pause dans la queue d'exécution de **int** mil
 La méthode **repeat** permet de répéter `number || infinite` fois les **int** méthodes précédentes.
 Veillez à ne ce que votre méthode **repeat** ne répète pas une autre méthode **repeat** plus haut dans la queue d'exécution, cela provoquerait une boucle infinie entre les deux dernières méthodes **repeat** appelées.
 
-Le premier argument définit le nombre de fois que la méthode précédent doit se répéter avant de poursuivre.
+Le premier argument définit le nombre de fois où les n méthodes précédentes doivent se répéter avant de poursuivre.
 
-Le second argument définit le nombre de méthodes en partant de `'repeat'` qui doivent se répéter (par défaut 1).
+Le second argument définit le nombre de méthodes précédant `'repeat'` qui doivent se répéter (par défaut 1). Si cette valeur vaut 0
+ou `'restart'` alors l'entièreté de la queue qui sera répétée.
 
 Par exemple :
 
