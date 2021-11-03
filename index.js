@@ -6,7 +6,7 @@ var docButAnimation = crimson({
         docBut.style.backgroundImage = 'linear-gradient(to right, transparent '+(100*p)+'%, #EBD37C 0%, #EBD37C)';
     },
     onfinish: function(){
-        docButAnimation2.start();
+        docButAnimation2.play();
     }
 });
 var docButAnimation2 = crimson({
@@ -31,8 +31,8 @@ var logoAnimation = crimson({
     }
 });
 
-logoAnimation.start();
-docButAnimation.start();
+logoAnimation.play();
+docButAnimation.play();
 
 var secQueue = document.querySelector('section.queue');
 
@@ -57,7 +57,7 @@ function arrowClick(){
         }
     });
 
-    an.start();
+    an.play();
 }
 
 var planet = document.querySelectorAll('.planet > div');
@@ -68,10 +68,10 @@ function planetRotate(target, time){
             target.style.transform = 'rotateZ('+p*360+'deg)';
         },
         onfinish: function(){
-            an.start();
+            an.play();
         }
     }); 
-    an.start();
+    an.play();
 }
 
 planetRotate(planet[0], 10000);
@@ -132,7 +132,7 @@ var sun = crimson({
     },
     onfinish: function(){
         color = color === '#aaaaaa' ? '#EBD37C' : '#aaaaaa';
-        sun.start(sundata[2]);
+        sun.play(sundata[2]);
     }
 });
 
@@ -144,7 +144,7 @@ sunPLAY.addEventListener('click', function(){
         sunPLAY.innerHTML = '<svg><use xlink:href="#play"></use></svg>';
         sundata[0] = true;
         sundata[1] = true;
-        sun.start();
+        sun.play();
     }else if(!sundata[1]){
         sunPLAY.innerHTML = '<svg><use xlink:href="#play"></use></svg>';
         sundata[1] = true;

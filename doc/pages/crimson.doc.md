@@ -16,15 +16,17 @@ Crimson respecte la charte suivante :
 
 Crimson utilise `requestAnimationFrame` pour fonctionner, et ajoute une mince surcouche qui permet de mettre en place et de controler facilement les animations.
 
-## Créer une animation
+# Créer une animation
 
 La librairie Crimson ne comporte qu'une fonction du même nom `crimson()` qui prend un seul argument. Cet argument doit être un objet javascript. Dans cet objet il est possible de renseigner plusieurs paramètres qui seront détaillés dans les sections suivantes.
 
-\* indique les champs obligatoires.
+\* *indique les champs obligatoires.*
 
 ```javascript
 crimson({...});
 ```
+
+## Les paramètres
 
 ### * duration
 
@@ -46,6 +48,7 @@ crimson({
 ```
 
 Un nombre entre 0 et 1 qui représente le **ratio** de départ de l'animation.
+**Progress** n'est effectif qu'une fois, au premier lancement de l'animation.
 
 ### easing
 ```javascript
@@ -93,9 +96,10 @@ crimson({
 
 Indique si l'animation doit livrer des informations dans la console concernant son état.
 
-## Utilisation
+## Les méthodes
 
-Une fois définie, une animation ne fait rien toute seule. Il est nécessaire d'utiliser les différentes méthodes fournies par `crimson()`, pour cela dans un premier temps il faut assigner l'animation à une variable.
+Une fois définie, une animation ne fait rien toute seule. Il est nécessaire d'utiliser les différentes méthodes fournies par `crimson()`.
+Dans un premier temps il faut assigner l'animation à une variable.
 
 ```javascript
 var animation = crimson({
@@ -108,17 +112,24 @@ var animation = crimson({
 
 Maintenant c'est depuis notre variable `animation` que l'on peut accéder aux différentes méthodes listées ci-dessous.
 
+## Les contrôles
 
-### start
-
-Pour lancer une animation il suffit d'utiliser la méthode start de cette animation.
+### start (obsolète depuis la version @1.1.1)
 
 ```javascript
+// obsolète, utiliser play à la place
 animation.start(ratio);
 ```
 
-La méthode **start** peut prendre un argument (facultatif) qui correspond au ratio de départ
-de l'animation, le cas contraire il sera équivalent à `progress || 0`.
+### play
+
+```javascript
+animation.play(ratio);
+```
+
+Cette méthode permet de lancer une animation ainsi que d'enlever la pause de l'animation.
+La méthode **play** peut prendre un argument (facultatif) qui correspond au ratio de départ
+de l'animation.
 
 ### pause
 
@@ -128,14 +139,16 @@ animation.pause();
 
 Cette méthode met en pause l'animation en cours.
 
-
-### play
+### stop
 
 ```javascript
-animation.play();
+animation.stop();
 ```
 
-Cette méthode permet d'enlever la pause de l'animation.
+Cette méthode stoppe l'animation en cours. Il s'agit d'un **jumpTo** avec le ratio
+correspondant à la fin de l'animation (0 ou 1 selon le sens de lecture).
+
+Cette méthode ne fonctionne que si l'animation n'est pas en pause.
 
 ### jumpTo
 
@@ -145,7 +158,7 @@ animation.jumpTo(ratio);
 
 Cette méthode déplace l'animation au ratio spécifié en paramètre.
 Attention cependant si l'animation est en **pause** il faudra enlever la pause à l'aide
-de **play** pour que le saut soit réalisé.
+de **play** pour que le saut soit joué.
 
 ### moveTo
 
@@ -154,7 +167,7 @@ animation.moveTo(ratio);
 ```
 
 Même principe que pour **jumpTo** à la différence que l'effet est visible lorsque l'animation est
-en **pause** ou non débutée.
+en **pause**.
 Attention cependant contrairement à **jumpTo** cette méthode mettra en pause l'animation si celle-ci
 est en cours de lecture.
 
@@ -162,10 +175,45 @@ est en cours de lecture.
 ### reverse
 
 ```javascript
-animation.reverse();
+animation.reverse(true | false);
 ```
 
 Cette méthode permet d'inverser le déroulé de l'animation à n'importe quel moment,
-c'est à dire pendant une **pause** ou même si elle n'a pas débuté, mais aussi pendant qu'elle se déroule.
-Attention cependant **start** n'annule pas un appel de **reverse**, il faudra donc appeler à nouveau
-**reverse** pour jouer l'animation à l'endroit.
+si l'animation n'est pas entrain de jouer, mais aussi pendant qu'elle se déroule.
+
+**reverse** peut prendre un booléen en argument (facultatif) permettant de fixer
+le statut de l'inversion.
+
+## Les modifieurs
+
+### change
+
+```javascript
+animation.change({
+
+    duration: ...,
+    easing: ...,
+    progress: ...,
+    animation: ...,
+    onfinish: ...
+
+});
+```
+
+Cette méthode permet de changer un ou plusieurs paramètres de l'animation simultanément
+et à n'importe quel moment.
+
+## Les statuts
+
+### status
+
+```javascript
+animation.status();
+```
+
+Cette méthode renvoie le statut de l'animation au travers de différentes variables.
+
+- `status().play` renvoie `true` si l'animation est entrain de jouer
+- `status().reverse` renvoie `true` si l'animation est inversée
+- `status().finish` renvoie `true` si l'animation est terminée
+- `status().progress` renvoie le ratio courant de l'animation

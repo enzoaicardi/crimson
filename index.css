@@ -123,8 +123,8 @@ section > main{
 
 .queue .planet{
 
-    width: 70vmin;
-    height: 70vmin;
+    width: 60vmin;
+    height: 60vmin;
     z-index: 0;
 
     position: relative;
