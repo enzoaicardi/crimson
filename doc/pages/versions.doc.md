@@ -7,7 +7,7 @@ Vous trouverez ici les différentes notes de versions de Crimson & CrimsonSand.
 Lancement du projet, la librairie est finie. Différentes optimisations architecturales viendront au fur et à mesure avec l'expérience et l'utilisation.
 
 - Compatible ES5 (+95% des navigateurs)
-- Léger (seulement 330 lignes de code non compacté)
+- Léger (seulement 335 & 75 lignes de code non compacté)
 - Fiable (utilisable en production)
 - Modulaire
 
@@ -34,3 +34,10 @@ Ajouts :
 Ajustements :
 
 - Correction de la fonction `stop()` qui déclenche désormais `onfinish` de manière correcte
+
+## @1.1.3
+
+Ajustements :
+
+- Correction de la fonction `change()` maintenant compatible ES5
+- Correction de fautes dans le README.txt

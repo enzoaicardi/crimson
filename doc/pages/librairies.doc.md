@@ -22,7 +22,7 @@ Une comparaison en terme de lignes de code n'a pas beaucoup de sens en ce qui co
 
 | Nom        | CrimsonSand | Crimson | AnimeJS | GSAP   | JQuery |
 |------------|-------------|---------|---------|--------|--------|
-| Lignes     |         260 |      80 |    1130 |   4000 |   8800 |
+| Lignes     |         335 |      75 |    1130 |   4000 |   8800 |
 | Caractères |        6000 |    1600 |   32600 | 106300 | 287600 |
 
 Consultez les différents benchs sur [cette page](https://codepen.io/GreenSock/pen/srfxA?editors=1010).

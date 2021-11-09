@@ -158,6 +158,9 @@ Cette méthode déplace l'animation au ratio spécifié en paramètre.
 Attention cependant si l'animation est en **pause** il faudra enlever la pause à l'aide
 de **play** pour que le saut soit joué.
 
+Si aucun argument n'est spécifié, cette méthode renverra systématiquement au ratio 0 et
+non au ratio courant, pour des raisons de performance.
+
 *Ne déclenchera jamais l'evenement **onfinish** si l'animation est en pause.*
 
 ### moveTo
@@ -170,6 +173,9 @@ Même principe que pour **jumpTo** à la différence que l'effet est visible lor
 en **pause**.
 Attention cependant contrairement à **jumpTo** cette méthode mettra en pause l'animation si celle-ci
 est en cours de lecture.
+
+Si aucun argument n'est spécifié, cette méthode renverra systématiquement au ratio 0 et
+non au ratio courant, pour des raisons de performance.
 
 *Ne déclenchera jamais l'evenement **onfinish**.*
 
