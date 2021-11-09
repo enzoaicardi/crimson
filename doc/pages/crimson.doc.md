@@ -73,8 +73,8 @@ crimson({
 
 Indique la fonction qui sera effectué à chaque repeinture lors de l'animation. Cette fonction prend deux arguments, le premier correspond au ratio courant de l'animation selon la fonction d'**assouplissement**, le second correspond au ratio de l'animation **linéaire**.
 
-Le premier et le second sont équivalent si aucune fonction d'assouplissement n'est spécifiée. Si un tableau de fonctions d'assouplissement est utilisé, alors le second argument est un tableau
-des ratios de ces mêmes fonctions.
+Le premier et le second sont équivalent si aucune fonction d'assouplissement n'est spécifiée. Si un tableau de fonctions d'assouplissement est utilisé,
+alors le premier argument est un tableau des ratios de ces mêmes fonctions.
 
 ### onfinish
 ```javascript
@@ -145,10 +145,8 @@ Cette méthode met en pause l'animation en cours.
 animation.stop();
 ```
 
-Cette méthode stoppe l'animation en cours. Il s'agit d'un **jumpTo** avec le ratio
-correspondant à la fin de l'animation (0 ou 1 selon le sens de lecture).
-
-Cette méthode ne fonctionne que si l'animation n'est pas en pause.
+Cette méthode stoppe l'animation en cours. La fonction **stop** déclenchera toujours
+l'événement **onfinish**.
 
 ### jumpTo
 
@@ -159,6 +157,8 @@ animation.jumpTo(ratio);
 Cette méthode déplace l'animation au ratio spécifié en paramètre.
 Attention cependant si l'animation est en **pause** il faudra enlever la pause à l'aide
 de **play** pour que le saut soit joué.
+
+*Ne déclenchera jamais l'evenement **onfinish** si l'animation est en pause.*
 
 ### moveTo
 
@@ -171,6 +171,24 @@ en **pause**.
 Attention cependant contrairement à **jumpTo** cette méthode mettra en pause l'animation si celle-ci
 est en cours de lecture.
 
+*Ne déclenchera jamais l'evenement **onfinish**.*
+
+Pour déclencher manuellement la fonction liée à **onfinish** il convient de tester manuellement le ratio
+au sein de l'animation.
+
+```javascript
+animation = crimson({
+    duration: 1000,
+    animation: function(p, l){
+        // do something ...
+        if(l === animation.status().reverse?0:1){
+            myOnfinishFunction();
+        }
+        // Ou si le ratio de fin est connu
+        if(l === 1){ myOnfinishFunction(); }
+    }
+});
+```
 
 ### reverse
 
@@ -217,3 +235,11 @@ Cette méthode renvoie le statut de l'animation au travers de différentes varia
 - `status().reverse` renvoie `true` si l'animation est inversée
 - `status().finish` renvoie `true` si l'animation est terminée
 - `status().progress` renvoie le ratio courant de l'animation
+
+Grace à cette méthode il est par exemple très facile de renvoyer le ratio de fin d'une
+animation.
+
+```javascript
+animation.moveTo(animation.status().reverse?0:1);
+// revoie 0 ou 1 selon que l'animation est jouée à l'envers ou à l'endroit
+```

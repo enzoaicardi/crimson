@@ -1,6 +1,6 @@
 # Versions
 
-Vous trouverez ici les différentes notes de versions de CrimsonSand.
+Vous trouverez ici les différentes notes de versions de Crimson & CrimsonSand.
 
 ## @1.0.0
 
@@ -28,3 +28,9 @@ Ajouts :
 - Retrait de la fonction `start()` qui devient obsolète
 - Ajout de la fonction `change()` qui permet de changer les paramètres de l'animation
 - Ajout de la fonction `status()` qui retourne le statut courant de l'animation
+
+## @1.1.2
+
+Ajustements :
+
+- Correction de la fonction `stop()` qui déclenche désormais `onfinish` de manière correcte
