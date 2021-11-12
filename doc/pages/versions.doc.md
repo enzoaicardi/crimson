@@ -42,7 +42,7 @@ Ajustements :
 - Correction de la fonction `change()` maintenant compatible ES5
 - Correction de fautes dans le README.txt
 
-## @1.1.3
+## @1.1.4
 
 Ajustements :
 
