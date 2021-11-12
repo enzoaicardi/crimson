@@ -41,3 +41,9 @@ Ajustements :
 
 - Correction de la fonction `change()` maintenant compatible ES5
 - Correction de fautes dans le README.txt
+
+## @1.1.3
+
+Ajustements :
+
+- Correction d'un bug qui empechait l'utilisation d'un tableau de fonctions d'assouplissement
