@@ -1,0 +1,193 @@
+h1 "Crimson"
+
+p {Crimson est une fonction qui permet la mise en place d'animations web contrôlables grace à des méthodes personnalisées.}
+
+a "Télécharger ici" [href](../lib/crimson.js) [download]
+
+h2 "Caractéristiques"
+
+ul
+    li "Compatible ES5 (+95% des navigateurs)"
+    li "Très Léger (~60 lignes de code non compacté)"
+    li "Fiable (utilisable en production)"
+
+p {Crimson utilise} +q "requestAnimationFrame" -{pour fonctionner, et ajoute une mince surcouche qui permet de mettre en place et de controler facilement les animations.}
+
+h2 "Créer une animation"
+
+p {La librairie Crimson ne comporte qu'une fonction du même nom crimson() qui prend un seul argument. Cet argument doit être un objet javascript. Dans cet objet il est possible de renseigner plusieurs paramètres qui seront détaillés dans les sections suivantes.}
+
+i {* indique les champs obligatoires.}
+
+code [title](Fonction crimson) [language](js)
+"crimson({...});"
+
+h3 "Les paramètres"
+
+h4 "duration *"
+
+p {Définit la durée de l'animation en } +b "millisecondes" -{ . Pensez à vérifier qu'aucune transition concernant vos propriétés n'est définie sur vos éléments, sinon le déroulé de l'animation peut être fortement altéré.}
+
+code [title](duration) [language](js)
+{crimson(\{
+    duration: 1000
+\});}
+
+h4 "progress"
+
+p {Un nombre entre 0 et 1 qui représente le ratio de départ de l'animation. Progress n'est effectif qu'une fois, au premier lancement de l'animation.}
+
+code [title](progress) [language](js)
+{crimson(\{
+    progress: 0.5
+\});}
+
+h4 "easing"
+
+p {Représente la fonction d'assouplissement de l'animation. Il est possible de spécifier un tableau de fonctions. En savoir plus.}
+
+code [title](easing) [language](js)
+{crimson(\{
+    easing: EASING.function
+\});}
+
+h4 "animation *"
+
+p {Indique la fonction qui sera effectué à chaque repeinture lors de l'animation. Cette fonction prend deux arguments, le premier correspond au ratio courant de l'animation selon la fonction d'assouplissement, le second correspond au ratio de l'animation linéaire.}
+
+p {Le premier et le second sont équivalent si aucune fonction d'assouplissement n'est spécifiée. Si un tableau de fonctions d'assouplissement est utilisé, alors le premier argument est un tableau des ratios de ces mêmes fonctions.}
+
+code [title](animation) [language](js)
+{crimson(\{
+    animation: function(p, l)\{
+        // increment some value here
+    \}
+\});}
+
+h4 "onfinish"
+
+p {Indique la fonction à effectuer lorsque l'animation sera terminée. Cette fonction ne prend qu'un argument correspondant au ratio final de l'animation.}
+
+code [title](onfinish) [language](js)
+{crimson(\{
+    onfinish: function(l)\{
+        // do something here
+    \}
+\});}
+
+h4 "debug"
+
+p {Indique si l'animation doit livrer des informations dans la console concernant son état.}
+
+code [title](debug) [language](js)
+{crimson(\{
+    debug: true|false
+\});}
+
+h3 "Les méthodes"
+
+p {Une fois définie, une animation ne fait rien toute seule. Il est nécessaire d'utiliser les différentes méthodes fournies par crimson(). Dans un premier temps il faut assigner l'animation à une variable.}
+
+code [title](variable) [language](js)
+{var animation = crimson(\{...\});}
+
+p {Maintenant c'est depuis notre variable} +q "animation" -{que l'on peut accéder aux différentes méthodes listées ci-dessous.}
+
+code [title](liste des methodes) [language](js)
+{var animation = crimson(\{...\});
+
+animation.play(ratio);
+animation.pause();
+animation.stop();
+animation.jumpTo(ratio);
+animation.moveTo(ratio);
+animation.reverse(true|false);
+animation.change(\{...\});
+animation.status();}
+
+h4 "start()" [dep](1.1)
+
+code [title](start) [language](js)
+{// obsolète, utiliser play() à la place
+animation.start(ratio);}
+
+h4 "play()"
+
+p {Cette méthode permet de lancer une animation ainsi que d'enlever la pause de l'animation. La méthode play peut prendre un argument (facultatif) qui correspond au ratio de départ de l'animation.}
+
+h4 "pause()"
+
+p {Cette méthode met en pause l'animation en cours.}
+
+h4 "stop()"
+
+p {Cette méthode stoppe l'animation en cours. La fonction stop déclenchera toujours l'événement onfinish.}
+
+h4 "jumpTo()"
+
+p {Cette méthode déplace l'animation au ratio spécifié en paramètre. Attention cependant si l'animation est en pause il faudra enlever la pause à l'aide de play pour que le saut soit joué.}
+
+p {Si aucun argument n'est spécifié, cette méthode renverra systématiquement au ratio 0 et non au ratio courant, pour des raisons de performance.}
+
+i {Ne déclenchera jamais l'evenement onfinish si l'animation est en pause.}
+
+h4 "moveTo()"
+
+p {Même principe que pour jumpTo à la différence que l'effet est visible lorsque l'animation est en pause. Attention cependant contrairement à jumpTo cette méthode mettra en pause l'animation si celle-ci est en cours de lecture.}
+
+p {Si aucun argument n'est spécifié, cette méthode renverra systématiquement au ratio 0 et non au ratio courant, pour des raisons de performance.}
+
+i {Ne déclenchera jamais l'evenement onfinish.}
+
+p {Pour déclencher manuellement la fonction liée à onfinish il convient de tester manuellement le ratio au sein de l'animation.}
+
+code [title](Declencher onfinish) [language](js)
+{animation = crimson(\{
+    duration: 1000,
+    animation: function(p, l)\{
+        // do something ...
+        if(l === animation.status().reverse?0:1)\{
+            myOnfinishFunction();
+        \}
+        // Ou si le ratio de fin est connu
+        if(l === 1)\{ myOnfinishFunction(); \}
+    \}
+\});}
+
+h4 "reverse()"
+
+p {Cette méthode permet d'inverser le déroulé de l'animation à n'importe quel moment, si l'animation n'est pas entrain de jouer, mais aussi pendant qu'elle se déroule.}
+
+p {reverse peut prendre un booléen en argument (facultatif) permettant de fixer le statut de l'inversion.}
+
+h4 "change()"
+
+p {Cette méthode permet de changer un ou plusieurs paramètres de l'animation simultanément et à n'importe quel moment.}
+
+code [title](change) [language](js)
+{animation.change(\{
+
+    duration: ...,
+    easing: ...,
+    progress: ...,
+    animation: ...,
+    onfinish: ...
+
+\});}
+
+h4 "status()"
+
+p {Cette méthode renvoie le statut de l'animation au travers de différentes variables.}
+
+code [title](status) [language](js)
+{...status().play // renvoie true si l'animation est entrain de jouer
+status().reverse // renvoie true si l'animation est inversée
+status().finish // renvoie true si l'animation est terminée
+status().progress // renvoie le ratio courant de l'animation}
+
+p {Grace à cette méthode il est par exemple très facile de renvoyer le ratio de fin d'une animation.}
+
+code [title](status) [language](js)
+{var reverse = animation.status().reverse;
+animation.moveTo(reverse ? 0 : 1);
+// revoie 0 ou 1 selon que l'animation est jouée à l'envers ou à l'endroit}

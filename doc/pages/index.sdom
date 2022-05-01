@@ -1,0 +1,39 @@
+h1 "Documentation"
+
+p {CrimsonSand est un ensemble de deux librairies indépendantes.}
+
+h3 "CrimsonSand"
+
+i {Peu de tests réalisés en production}
+
+p {CrimsonSand est une ossature sur laquelle peut se greffer tout un tas de fonctions, modules et plugins, le code est ainsi très léger et correspond uniquement à des besoins spécifiques. CrimsonSand permet la mise en place d'une queue d'exécution grace à des callbacks (fonctions de rappel) non bloquants. Cela permet d'executer les méthodes les unes à la suite des autres.}
+
+a "Voir la documentation" [page](crimsonsand)
+
+h3 "Crimson"
+
+p {Crimson est une fonction qui permet la mise en place d'animations web efficaces, fortement compatibles et contrôlables grace à des méthodes personnalisées.}
+
+a "Voir la documentation" [page](crimson)
+
+h3 "Comparaison"
+
+p {Une comparaison en terme de lignes de code n'a pas beaucoup de sens en ce qui concerne les performances d'animation (GSAP semble otenir de meilleurs résultats dans tous les cas de figure), mais trouve son utilité au niveau du temps de chargement de la librairie.}
+
+table
+    thead
+        tr
+            td "Nom"
+            td "CrimsonSand"
+            td "Crimson"
+            td "AnimeJS"
+            td "GSAP"
+            td "JQuery"
+    tbody
+        tr
+            td "Lignes"
+            td "335"
+            td "75"
+            td "1130"
+            td "4000"
+            td "8800"

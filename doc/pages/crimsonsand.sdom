@@ -1,0 +1,286 @@
+h1 "CrimsonSand"
+
+p {CrimsonSand reprend des concepts de } +a "PurpleSand" [href](https://purple.aicardi.pro) -{ mais les retravaille complétement et n'adopte pas la même syntaxe, pour cette raison les deux projets ne portent pas le même nom même si on peut les situer (en partie) dans un prolongement logique.}
+
+a "Télécharger ici" [href](https://crimson.aicardi.pro/lib/cns.js)
+
+h2 "Caractéristiques"
+
+ul
+    li "Compatible ES5 (+95% des navigateurs)"
+    li "Léger (seulement 330 lignes de code non compacté)"
+    li "Fiable (utilisable en production)"
+    li "Modulaire"
+
+p {CrimsonSand est simplement une ossature sur laquelle on peut greffer tout un tas de fonctions, modules et plugins, le code est ainsi très léger et correspond uniquement à vos besoins. CrimsonSand permet la mise en place d'une queue d'exécution grace à des callbacks (fonctions de rappel) non bloquants. Cela permet d'executer les méthodes les unes à la suite des autres.}
+
+p {CrimsonSand permet de mettre un ordre chronologique précis à votre code javascript sans le bloquer et sans utiliser de timeout.}
+
+h2 "Créer une queue d'execution"
+
+p {La librairie CrimsonSand ne comporte qu'une fonction du même nom cns() qui prend un seul argument. Cet argument doit être un tableau javascript. Dans ce tableau il est possible de renseigner plusieurs méthodes que nous allons détailler mais aussi de créer ses propres méthodes.}
+
+code [title](Fonction cns) [language](js)
+{cns([...]);}
+
+p {Le tableau fonctionne par pairs} +q{"méthode", [arguments]} -{qui se suivent les unes et les autres.}
+
+h3 "Les méthodes"
+
+table [style](width: 100%;)
+    thead
+        tr
+            td "nom"
+            td "syntaxe"
+            td "arguments"
+            td "types"
+    tbody
+        tr +td "$" =td +q "[selector]" -td "{1}" =td +q "string | NodeList | Element"
+        tr +td "$cut" =td +q "[int|[percent](, int | [percent])]" -td "{0, 2}" =td +q "integer | Array<integer>"
+        tr +td "$order" =td +q "[string|array[, 'reverse']]" -td "{1, 2}" =td +q "string | Array" =q "string"
+        tr +td "$duplicate" =td +q "[int]" -td "{1}" =td +q "number"
+        tr +td "interval" =td +q "[int[, length][..., int[, length]]]" -td "{1}" =td +q "Integer"
+        tr +td "wait" =td +q "[true|false]" -td "{1}" =td +q "boolean"
+        tr +td "pause" =td +q "[int]" -td "{1}" =td +q "Integer"
+        tr +td "repeat" =td +q "[int(, int)]" -td "{0, 2}" =td +q "Integer"
+        tr +td "debug" =td +q "[true|false]" -td "{1}" =td +q "boolean"
+        tr +td "exec" =td +q "[function (f, t){ ... }]" -td "{1}" =td +q "Function"
+        tr +td "for" =td +q "[function (f, t){ ... }]" -td "{1}" =td +q "Function"
+
+h4 "$"
+
+p {Le symbole} +q "$" -{correspond au selecteur, il permet de définir le tableau des éléments à parcourir lors de l'exécution de la queue d'exécution.}
+
+p {Il est donc impératif de définir le selecteur avant des méthodes qui utilisent le tableau des éléments.}
+
+p {Le sélecteur peut prendre comme arguments :}
+
+ul
+    li "une chaine correspondant au sélecteur css"
+    li "une NodeList"
+    li "un HTMLElement"
+
+code [title](selecteur) [language](js)
+{'$', ['selector']
+'$', [[..., El, El, El]]
+'$', [Element]}
+
+h4 "$cut"
+
+p {La methode } +q "$cut" -{ permet de raccourcir les bornes du tableau des éléments original, c'est à dire non-ordonné. Pour cette raison il est recommandé d'utiliser } +q "$cut" -{ avant } +q "$order" -{.}
+
+p +q "$cut" -{ prend un ou deux arguments. Ils peuvent être des entiers positifs ou des tableaux contenant un entier positif compris entre 0 et 100 indiquant un pourcentage par rapport à la longueur totale du tableau des éléments.}
+        
+code [title](exemple) [language](js)
+{'$', [1, 2, 3, 4, 5],
+'$cut', [1], // [1, 0]
+'$cut', [0] // n'annule pas la précédente coupe
+
+// résultat : [2, 3, 4, 5]
+'$cut', [1, 2]
+// résultat : [2, 3]
+'$cut', [[40], 1]
+// résultat : [3, 4]
+'$cut', [1, 1],
+'$cut', [1, 1]
+// résultat : [3]}
+
+h4 "$order"
+
+code [title](order) [language](js)
+{'$order', ['preset' | array[, 'reverse']]}
+
+p {La méthode } +q "$order" -{ permet de réordonner le tableau des éléments courant, c'est à dire non-original, depuis le tableau original. Pour cette raison il est recommandé d'utiliser } +q "$order" -{ après } +q "$cut" -{.}
+
+p {La méthode } +q "$order" -{ peut prendre jusqu'à deux arguments, le premier correspond au tableau des index pour réorganiser l'ordre du tableau des éléments.}
+
+p {Il existe des presets qui correspondent à des tableaux d'index particuliers :}
+
+ul
+    li "normal: le tableau est inchangé (permet de revenir au tableau original)."
+    li "invert: les index sont organisés dans l'ordre décroissant."
+    li "center: les index sont classés des plus proches aux plus éloignés des bornes."
+    li "random: les index sont mélangés aléatoirement."
+
+p {Le deuxième argument (facultatif) peut-être} +q "'reverse' || undefined" -{s'il vaut} +q "'reverse'" -{alors l'ordre du tableau des éléments est inversé après avoir été ordonné. Cela permet par exemple d'inverser une randomisation.}
+
+h4 "$duplicate"
+
+p {La méthode $duplicate permet de dupliquer int fois le tableau des éléments courant, c'est à dire non-original, depuis le tableau courant.}
+
+p {Pour cette raison il est recommandé d'utiliser} +q "$duplicate" -{après} +q "$cut et $order"
+
+code [title](duplicate) [language](js)
+{'$duplicate', [int]}
+
+h4 "interval"
+
+p {La méthode interval permet de définir l'interval en millisecondes séparant chaque itération pour les méthodes qui parcourent le tableau des éléments.}
+
+p {Il est possible de spécifier des pairs : } +q "interval, length" -{qui définissent l'interval et son étendue. Si length n'est pas déclarée elle vaudra 1. Pour ajouter une nouvelle pair il est impératif de déclarer la length du précédent interval.}
+
+p {Un interval dont la length vaut 0 est ignoré. La length indique le nombre d'éléments affectés par l'interval avant le prochain interval spécifié (il s'agit d'une boucle d'intervals).}
+
+p {Utiliser un tableau d'intervals est chose complexe car cela necessite de bien comprendre son fonctionnement sur les éléments, mais pour autant il s'agit d'une fonctionnalité très intéressante si elle est couplé avec un ordre spécifique, ce qui permet par exemple d'affecter les éléments deux à deux.}
+
+code [title](interval) [language](js)
+{'interval', [interval, 1, 0, 1]}
+
+p {Ou inversement :}
+
+code [title](interval) [language](js)
+{'interval', [0, 1, interval, 1]}
+
+p {Permettent une affectation des intervals deux à deux.}
+
+h4 "wait"
+
+p {La méthode wait définit si oui ou non chaque itération (pour les méthodes qui parcourent le tableau des éléments) doit attendre la fin de la précédente pour débuter.}
+
+code [title](wait) [language](js)
+{'wait', [true|false]}
+
+h4 "pause"
+
+p {La méthode pause marque une pause dans la queue d'exécution de int millisecondes.}
+
+code [title](pause) [language](js)
+{'pause', [int]}
+
+h4 "repeat"
+
+code [title](repeat) [language](js)
+{'repeat', []
+'repeat', ['infinite'[,int]]
+'repeat', [int[,int]]}
+
+p {La méthode repeat permet de répéter} +q "number || infinite" -{fois les int méthodes précédentes. Veillez à ne ce que votre méthode repeat ne répète pas une autre méthode repeat plus haut dans la queue d'exécution, cela provoquerait une boucle infinie entre les deux dernières méthodes repeat appelées.}
+
+p {Le premier argument définit le nombre de fois où les n méthodes précédentes doivent se répéter avant de poursuivre.}
+
+p {Le second argument définit le nombre de méthodes précédant repeat qui doivent se répéter (par défaut 1). Si cette valeur vaut} +q "0 ou 'restart'" -{alors l'entièreté de la queue qui sera répétée.}
+
+p {Par exemple :}
+
+code [title](repeat) [language](js)
+{'method n°1', [args],
+'method n°2', [args],
+'repeat', [ |1]
+
+// résultat : 1 > 2 > repeat > 2 > repeat
+'repeat', [2]
+// résultat : 1 > 2 > repeat > 2 > repeat > 2 > repeat
+'repeat', [1, 2]
+// résultat : 1 > 2 > repeat > 1 > 2 > repeat}
+
+h4 "exec"
+
+code [title](exec) [language](js)
+{'exec', [ function (f, t)\{ ... \} ]}
+
+p {La méthode exec permet d'executer une fonction javascript dans la queue d'exécution. La fonction prend deux arguments (facultatifs) :}
+
+ul
+    li "f: qui est un objet contenant différentes méthodes :"
+    ul
+        li "next(): qui est une fonction permettant de passer à la méthode suivante."
+        li "throw(message): qui est une fonction permettant de provoquer une erreur."
+        li "log(message): qui est une fonction permettant d'afficher une erreur dans la console."
+    li "t: qui est un objet contenant une valeur :"
+    ul
+        li "all: qui renvoie le tableau des éléments courant."
+
+p {Si la fonction next() n'est pas utilisée alors la queue d'exécution ne pourra pas continuer.}
+
+code [title](exec) [language](js)
+{'exec', [ function (f, t)\{
+
+    setTimeout(function()\{
+
+        // après 1000ms dire hello puis passer à la méthode suivante
+        console.log('hello');
+        f.next();
+
+    \}, 1000);
+
+\}]}
+        
+h4 "for"
+
+code [title](for) [language](js)
+{'for', [ function (f, t)\{ ... \} ]}
+
+p {La méthode for permet d'executer une fonction javascript dans la queue d'exécution, pour chaque élément dans le tableau des éléments. La fonction prend deux arguments (facultatifs) :}
+
+ul
+    li "f: qui est un objet contenant différentes méthodes :"
+    ul
+        li "id: qui renvoie l'id de la fonction."
+        li "this: qui renvoie la fonction courante."
+        li "next(f): qui est une fonction permettant de passer à la méthode suivante."
+        li "throw(message): qui est une fonction permettant de provoquer une erreur."
+        li "log(message): qui est une fonction permettant d'afficher une erreur dans la console."
+    li "t: qui est un objet contenant une valeur :"
+    ul
+        li "current: qui renvoie l'élément courant sur lequel s'applique la fonction."
+        li "all: qui renvoie le tableau des éléments courant."
+        li "id: qui renvoie l'id de l'élément courant."
+
+p {Si la fonction} +q "next(f)" -{n'est pas utilisée ou qu'elle ne possède pas f comme argument, alors la queue d'exécution ne pourra pas continuer. En savoir plus.}
+
+h4 "next"
+
+p {La fonction next() prend un argument (facultatif) sous forme d'entier positif indiquant la position de la prochaine méthode (1 correspond à la méthode suivante, 2 celle d'après, etc.)}
+
+p {Dans le cas de for alors next(f) prend en premier argument f qui est le premier objet renvoyé par for, la position dans la queue devient le deuxième argument.}
+
+p {La fonction next() ne doit être executée qu'une seule fois maximum dans la fonction. Pour assurer la traçabilité des erreurs il est recommandé que next() soit la dernière instruction (chronologiquement) executée. Elle peut être appelée de manière asynchrone et au travers d'écouteurs d'événements.}
+
+p {Pour le dernier cas il faut impérativement que l'écouteur ne soit déclenché qu'une fois.}
+
+p {Il est possible d'utiliser l'option once :}
+
+code [title](next) [language](js)
+{document.addEventListener('click', function ()\{ f.next(); \}, \{once: true\});
+// non compatible avec IE (\{6, 11\});}
+
+p {Ou la fonction suivante :}
+
+code [title](next) [language](js)
+{function evt(e)\{
+    // do something here
+    f.next();
+    document.removeEventListener(e.type, evt);
+\}
+document.addEventListener('click', evt);
+// haute compatibilité
+}
+
+h4 "throw"
+
+p {Permet de provoquer une erreur. Pour adopter le format des erreurs de CrimsonSand regardez log ci-dessous.}
+
+h4 "log"
+
+p {Permet d'afficher un message d'erreur dans la console. Log prend comme seul argument un objet dont les propriétés sont les suivantes :}
+
+ul
+    li "p: le nom de la propriété | variable ayant provoqué l'erreur."
+    li "m: le message à afficher."
+    li "t: le type de message: warn ou fatal (par défaut)."
+    li "d: la donnée dans laquelle se trouve l'erreur (affiché avec debug)."
+
+p {Le message sera affiché de la manière suivante :}
+
+code [title](log) [language](js)
+{console.[type](property + ': ' + message);
+console.warn(data);}
+
+p {Il existe des messages prédéfinis accessibles via la variable globale m.}
+
+h4 "debug"
+
+p {La méthode debug permet d'activer le mode debug de la fonction cns() courante. Le mode debug fournit des erreurs plus précises mais aussi le suivi du déroulement de la queue.}
+
+code [title](debug) [language](js)
+{'debug', [true|false]}

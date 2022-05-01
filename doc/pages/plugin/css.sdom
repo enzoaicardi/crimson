@@ -1,0 +1,91 @@
+h1 "CSS (plugin)"
+
+p {css est un plugin de la librairie standard CrimsonSand qui permet de mettre facilement en place des transitions CSS les unes à la suite des autres en combinant les effets et les timings.}
+
+a "Télécharger ici" [href](https://crimson.aicardi.pro/plugins/plugin.css.js)
+
+h2 "Fonctionnement"
+
+p {La méthode css permet de créer des animations CSS complexes de manière simple grace à sa syntaxe. Cette méthode s'appuie sur les transitions CSS.}
+
+code [title](css plugin) [language](js)
+{'css', [
+    \{
+        'property|method': [duration, 'value'[, 'easing'[, delay]]]
+    \}
+]}
+
+h3 "set"
+
+p {La méthode css prend de 0 à une infinité d'arguments. Les seuls arguments acceptés sont des objets javascript. Ces objets peuvent contenir des propriétés CSS ou des méthodes.}
+
+p {Chaque objet est considéré comme un set :}
+
+code [title](css plugin) [language](js)
+{'css', [
+    // set n°1
+    \{
+        'property': [duration, 'value', 'easing'],
+        'property': [duration, 'value', 'easing']
+    \},
+    // set n°2
+    \{
+        'property': [duration, 'value', 'easing'],
+        'property': [duration, 'value', 'easing']
+    \}
+    ...
+]}
+
+p {Les set sont executés les uns à la suite des autres, ils représentent en quelque sorte des blocs de définition des transitions. Ces set sont des objets javascript, ils ne peuvent donc pas contenir plus d'une fois la même propriété.}
+
+h4 "property"
+
+p {Il est possible de spécifier des propriétés CSS au sein d'un set ainsi que la manière de l'animer.}
+
+code [title](css plugin) [language](js)
+{'css', [
+    \{
+        'background-color': [1000, 'red', 'linear', 0]
+    \}
+]}
+
+p {Chaque propriété CSS peut prendre jusqu'à quatre arguments au sein d'un tableau :}
+
+ul 
+    li "duration: la durée de l'animation en millisecondes (obligatoire)."
+    li "value: la nouvelle valeur de la propriété (obligatoire)."
+    li "easing: la fonction cubic-bezier (facultatif) En savoir plus."
+    li "delay: le delais avant le début de l'animation en millisecondes (facultatif)."
+
+h3 "Autres méthodes"
+
+p {Le plugin css possède ses propres méthodes qui ne sont pas des propriétés CSS.}
+
+h4 "pause"
+
+p {La méthode pause ajoute un temps de pause en millisecondes après l'execution du set dans lequel elle est utilisée.}
+
+code [title](css plugin) [language](js)
+{'pause', [int]}
+
+h4 "next"
+
+p {La méthode next définit le délais avant l'execution du set suivant en millisecondes. Par défaut il correspond au temps d'execution de la plus longue transition du set.}
+
+code [title](css plugin) [language](js)
+{'next', [int]}
+
+h4 "smooth"
+
+p {La méthode smooth définit si les transitions doivent êtres éliminées ou concervées lors du passage d'un set à un autre. Cette méthode ralentit très légèrement la mise en place des transitions, il est donc utile de la désactiver lorsqu'elle n'est plus utilisée. Par convention smooth doit se trouver après toutes les propriétés (pas d'importance pour les méthodes) du set par soucis de propreté d'écriture.}
+
+code [title](css plugin) [language](js)
+{'smooth', [true|false]}
+
+h4 "class"
+
+p {La méthode class permet d'ajouter ou de supprimer une classe à l'élément courant.}
+
+code [title](css plugin) [language](js)
+{'class', ['add'|'remove', string]}
+

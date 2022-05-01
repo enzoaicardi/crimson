@@ -1,0 +1,15 @@
+h1 "Easings"
+
+p {EASING est un ensemble de fonctions d'assouplissement. Cela peut être paticulièrement utile dans le cas d'animations javascript avec crimson.}
+
+a "Télécharger ici" [href](https://crimson.aicardi.pro/modules/module.easings.js)
+
+code [title](Easings) [language](js)
+{crimson(\{
+    duration: 1000,
+    easing: EASING.easeInSine
+\});}
+
+h2 "Tester les fonctions"
+
+p {Vous pouvez tester les différentes fonctions d'assouplissement hérités de } +a "Easings.net" [href](https://easings.net/)

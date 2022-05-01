@@ -1,0 +1,12 @@
+h1 "Beziers"
+
+p {BEZIER est un ensemble de courbes de bézier sous forme de chaines de caractères. Cela peut être paticulièrement utile dans le cas de transitions css.}
+
+a "Télécharger ici" [href](https://crimson.aicardi.pro/modules/module.beziers.js)
+
+code [title](Beziers) [language](js)
+{element.style.transition = '1000ms' + BEZIER.bounce;}
+
+h2 "Tester les courbes"
+
+p {Vous pouvez tester les différentes courbes hérités de } +a "PurpleSand" [href](https://purple.aicardi.pro/doc/beziers.html) -{ ainsi que les différentes courbes hérités de } +a "Easings.net" [href](https://easings.net/)

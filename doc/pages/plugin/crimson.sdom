@@ -1,0 +1,38 @@
+h1 "Crimson (plugin)" [new](1.1)
+
+p {Le plugin crimson utilise la librairie crimson. Il permet de mettre en place une animation qui sera directement démarrée et passera à la méthode suivante lors de} +q "onfinnish"
+
+h2 "Fonctionnement"
+
+p {Cette méthode ne prend qu'un argument qui est un objet javascript, vous en trouverez les détails sur } +a [page](crimson) {cette page.}
+
+code [title](crimson plugin) [language](js)
+{cns([
+    'crimson', [\{...\}]
+]);}
+
+h3 "animation"
+
+p {La principale différence avec crimson c'est qu'il est possible de récupérer au travers du paramètre animation, l'argument t qui représente l'objet t ou target de for.}
+
+code [title](crimson plugin) [language](js)
+{cns([
+    'crimson', [\{
+        animation: function(p, l, t)\{
+            // increment something here
+        \}
+    \}]
+]);}
+
+h3 "onfinnish"
+
+p {La principale différence avec crimson c'est qu'il est possible de récupérer au travers du paramètre onfinish, l'argument t qui représente l'objet t ou target de for.}
+
+code [title](crimson plugin) [language](js)
+{cns([
+    'crimson', [\{
+        onfinish: function(p, t)\{
+            // do something here
+        \}
+    \}]
+]);}
