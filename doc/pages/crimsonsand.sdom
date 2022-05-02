@@ -97,10 +97,10 @@ p {La méthode } +q "$order" -{ peut prendre jusqu'à deux arguments, le premier
 p {Il existe des presets qui correspondent à des tableaux d'index particuliers :}
 
 ul
-    li "normal: le tableau est inchangé (permet de revenir au tableau original)."
-    li "invert: les index sont organisés dans l'ordre décroissant."
-    li "center: les index sont classés des plus proches aux plus éloignés des bornes."
-    li "random: les index sont mélangés aléatoirement."
+    li "normal: le tableau est inchangé (permet de revenir au tableau original)"
+    li "invert: les index sont organisés dans l'ordre décroissant"
+    li "center: les index sont classés des plus proches aux plus éloignés des bornes"
+    li "random: les index sont mélangés aléatoirement"
 
 p {Le deuxième argument (facultatif) peut-être} +q "'reverse' || undefined" -{s'il vaut} +q "'reverse'" -{alors l'ordre du tableau des éléments est inversé après avoir été ordonné. Cela permet par exemple d'inverser une randomisation.}
 
