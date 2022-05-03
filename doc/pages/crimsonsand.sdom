@@ -97,7 +97,7 @@ p {La méthode } +q "$order" -{ peut prendre jusqu'à deux arguments, le premier
 p {Il existe des presets qui correspondent à des tableaux d'index particuliers :}
 
 ul
-    li "normal: le tableau est inchangé (permet de revenir au tableau original)"
+    li "normal: le tableau est inchangé (permet de revenir au tableau original)."
     li "invert: les index sont organisés dans l'ordre décroissant"
     li "center: les index sont classés des plus proches aux plus éloignés des bornes"
     li "random: les index sont mélangés aléatoirement"
