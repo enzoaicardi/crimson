@@ -1,4 +1,6 @@
-h1 "CrimsonSand"
+h1 "CrimsonSand" [dep](1.1)
+
+p {Utilisez plutôt } +a "QueueIt" [href](https://queueit.aicardi.pro)
 
 p {CrimsonSand reprend des concepts de } +a "PurpleSand" [href](https://purple.aicardi.pro) -{ mais les retravaille complétement et n'adopte pas la même syntaxe, pour cette raison les deux projets ne portent pas le même nom même si on peut les situer (en partie) dans un prolongement logique.}
 

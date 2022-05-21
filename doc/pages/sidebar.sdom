@@ -4,7 +4,7 @@ section [title](Librairies) [char](L)
     a "Commencer" [page](index)
         # q {This welcome is a description to help you learn the nakke library usage}
     a "Crimson"
-    a "CrimsonSand"
+    a "CrimsonSand" [dep](1.1)
 
 section [title](Modules) [char](M)
 
